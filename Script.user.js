@@ -3,7 +3,7 @@
 // @namespace   Rayman Script
 // @match       https://www.simcompanies.com/headquarters/warehouse/*
 // @grant       none
-// @version     0.3
+// @version     0.3.1
 // @author      Rayman223
 // @description Calculate automatically the 97% of the price
 // ==/UserScript==
