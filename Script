@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name        Calcul of the -3% mp V0.2
+// @name        Calcul of the -3% mp V0.3
 // @namespace   Rayman Script
 // @match       https://www.simcompanies.com/headquarters/warehouse/*
 // @grant       none
-// @version     0.2
+// @version     0.3
 // @author      Rayman223
 // @description Calculate automatically the 97% of the price
 // ==/UserScript==
@@ -20,6 +20,17 @@ function calculateAndDisplayAmounts() {
         calculatedCell.textContent = '$' + calculatedAmount.toFixed(3);
         row.appendChild(calculatedCell);
     });
+
+    // Add a new row above the first row to indicate "3%"
+    var firstRow = document.querySelector('.css-1xdhyk6.e12j7voa16:first-child');
+    if (firstRow) {
+        var percentageRow = document.createElement('tr');
+        var percentageCell = document.createElement('td');
+        percentageCell.colSpan = 3; // Span the cell across all columns
+        percentageCell.textContent = '3%';
+        percentageRow.appendChild(percentageCell);
+        firstRow.parentNode.insertBefore(percentageRow, firstRow);
+    }
 }
 
 // Function to observe mutations
