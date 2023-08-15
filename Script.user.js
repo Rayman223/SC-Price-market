@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name        Calcul of the -3% mp V0.3
+// @name        Calcul of the -3% mp V0.4
 // @namespace   Rayman Script
 // @match       https://www.simcompanies.com/headquarters/warehouse/*
 // @grant       none
-// @version     0.3.1
+// @version     0.4
 // @author      Rayman223
 // @description Calculate automatically the 97% of the price
 // ==/UserScript==
@@ -15,7 +15,7 @@ function calculateAndDisplayAmounts() {
         var amountCell = row.querySelector('td:last-child');
         var amountText = amountCell.textContent.trim();
         var amountValue = parseFloat(amountText.replace('$', '').replace(',', ''));
-        var calculatedAmount = amountValue * 0.97;
+        var calculatedAmount = amountValue * 0.98;
         var calculatedCell = document.createElement('td');
         calculatedCell.textContent = '$' + calculatedAmount.toFixed(3);
         row.appendChild(calculatedCell);
@@ -27,11 +27,41 @@ function calculateAndDisplayAmounts() {
         var percentageRow = document.createElement('tr');
         var percentageCell = document.createElement('td');
         percentageCell.colSpan = 3; // Span the cell across all columns
-        percentageCell.textContent = '3%';
+        percentageCell.textContent = '2%';
         percentageRow.appendChild(percentageCell);
         firstRow.parentNode.insertBefore(percentageRow, firstRow);
     }
 }
+
+// Function to execute the script when the button is clicked
+function handleButtonClick() {
+    // Call the function to calculate and display amounts
+    calculateAndDisplayAmounts();
+}
+
+// Create a button element
+var scriptButton = document.createElement('button');
+scriptButton.textContent = 'Calculate 98%';
+scriptButton.style.margin = '15px';
+scriptButton.style.padding = '5px 10px';
+scriptButton.style.backgroundColor = '#007bff';
+scriptButton.style.color = '#fff';
+scriptButton.style.border = 'none';
+scriptButton.style.cursor = 'pointer';
+
+// Create a floating box
+var floatingBox = document.createElement('div');
+floatingBox.style.position = 'fixed';
+floatingBox.style.top = '20px';
+floatingBox.style.right = '20px';
+floatingBox.style.zIndex = '9999';
+floatingBox.appendChild(scriptButton);
+
+// Append the floating box to the document body
+document.body.appendChild(floatingBox);
+
+// Add a click event listener to the button
+scriptButton.addEventListener('click', handleButtonClick);
 
 // Function to observe mutations
 function observeMutations() {
